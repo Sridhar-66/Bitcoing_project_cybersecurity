@@ -1,9 +1,7 @@
-import { Connection, LAMPORTS_PER_SOL } from "@solana/web3.js";
-
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
 let connection = null;
 
-function getSolanaConnection() {
+function getSolanaConnection(Connection) {
   if (!connection) {
     connection = new Connection(SOLANA_RPC_URL, "confirmed");
   }
@@ -47,7 +45,8 @@ export async function verifyTransaction({ signature, claimed }) {
 
   // Live Solana RPC lookup
   try {
-    const conn = getSolanaConnection();
+    const { Connection, LAMPORTS_PER_SOL } = await import("@solana/web3.js");
+    const conn = getSolanaConnection(Connection);
     const parsedTx = await conn.getParsedTransaction(signature, {
       maxSupportedTransactionVersion: 0
     });

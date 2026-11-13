@@ -1,10 +1,9 @@
-import { Connection, PublicKey, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { lookupVasp } from "./attribution.js";
 
 const SOLANA_RPC_URL = process.env.SOLANA_RPC_URL || "https://api.mainnet-beta.solana.com";
 let connection = null;
 
-function getSolanaConnection() {
+function getSolanaConnection(Connection) {
   if (!connection) {
     connection = new Connection(SOLANA_RPC_URL, "confirmed");
   }
@@ -59,8 +58,9 @@ export async function traceWallet({ address, depth = 3 }) {
 
   // Live Solana RPC address tracing
   try {
+    const { Connection, PublicKey, LAMPORTS_PER_SOL } = await import("@solana/web3.js");
     const pubKey = new PublicKey(address);
-    const conn = getSolanaConnection();
+    const conn = getSolanaConnection(Connection);
     const nodes = [{ id: address, type: "WALLET" }];
     const edges = [];
     const seen = new Set([address]);
