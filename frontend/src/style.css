@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg: #ffffff;
+  --bg: #faf8f4;
   --card-bg: #ffffff;
   --border: rgba(15, 23, 42, 0.09);
   --border-glow: rgba(37, 99, 235, 0.25);
-  --text-main: #0f172a;
-  --text-muted: #64748b;
+  --text-main: #1f2937;
+  --text-muted: #5b6472;
   --accent-cyan: #2563eb;
   --accent-blue: #3b82f6;
   --accent-purple: #2563eb;
@@ -27,9 +27,9 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   background-image:
-    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.06) 0%, transparent 40%),
     radial-gradient(circle at 85% 85%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+    radial-gradient(circle at 50% 50%, rgba(203, 176, 132, 0.08) 0%, transparent 55%);
   background-attachment: fixed;
 }
 
@@ -185,7 +185,7 @@ input, select {
   padding: 14px 16px;
   border-radius: 12px;
   border: 1px solid rgba(15, 23, 42, 0.15);
-  background: #f8fafc;
+  background: #fbfaf7;
   color: var(--text-main);
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
@@ -237,7 +237,7 @@ button.primary:hover {
   padding: 18px;
   border-radius: 14px;
   border: 1px solid var(--border);
-  background: #f8fafc;
+  background: #faf9f5;
   backdrop-filter: blur(8px);
 }
 
@@ -337,7 +337,7 @@ button.primary:hover {
   margin-top: 16px;
   padding: 16px;
   border-radius: 12px;
-  background: #f8fafc;
+  background: #faf9f5;
   border: 1px solid var(--border);
 }
 
@@ -418,7 +418,7 @@ footer {
 
 .net-btn {
   flex: 1;
-  background: #f8fafc;
+  background: #faf9f5;
   color: var(--text-muted);
   border: 1px solid rgba(15, 23, 42, 0.15);
   border-radius: 8px;
@@ -485,7 +485,7 @@ footer {
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
-  background: #f8fafc;
+  background: #faf9f5;
 }
 
 .flow-legend {
