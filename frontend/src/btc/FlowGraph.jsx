@@ -38,15 +38,16 @@ export default function FlowGraph({ graph }) {
           position: { x: hop * 260, y: i * 110 },
           data: { label: truncate(id) + (isStart(id) ? "\n(START)" : "") },
           style: {
-            background: isStart(id) ? "rgba(6, 182, 212, 0.18)" : "rgba(17, 24, 39, 0.9)",
-            border: isStart(id) ? "1px solid #06b6d4" : "1px solid rgba(255,255,255,0.15)",
+            background: isStart(id) ? "rgba(37, 99, 235, 0.08)" : "#ffffff",
+            border: isStart(id) ? "1px solid #2563eb" : "1px solid rgba(15, 23, 42, 0.15)",
             borderRadius: 10,
-            color: "#f8fafc",
+            color: "#0f172a",
             fontSize: 11,
             fontFamily: "JetBrains Mono, monospace",
             padding: 8,
             width: 180,
-            whiteSpace: "pre-wrap"
+            whiteSpace: "pre-wrap",
+            boxShadow: "0 2px 8px rgba(15, 23, 42, 0.06)"
           }
         });
       });
@@ -57,10 +58,10 @@ export default function FlowGraph({ graph }) {
       source: e.from,
       target: e.to,
       label: btcLabel(e.sats),
-      labelStyle: { fontSize: 10, fill: "#94a3b8" },
-      labelBgStyle: { fill: "#0b1220", fillOpacity: 0.9 },
-      markerEnd: { type: MarkerType.ArrowClosed, color: "#3b82f6" },
-      style: { stroke: e.confirmed ? "#3b82f6" : "#f59e0b", strokeWidth: 1.5 },
+      labelStyle: { fontSize: 10, fill: "#64748b" },
+      labelBgStyle: { fill: "#ffffff", fillOpacity: 0.95 },
+      markerEnd: { type: MarkerType.ArrowClosed, color: "#2563eb" },
+      style: { stroke: e.confirmed ? "#2563eb" : "#d97706", strokeWidth: 1.5 },
       animated: !e.confirmed
     }));
 
@@ -77,7 +78,7 @@ export default function FlowGraph({ graph }) {
         nodesDraggable
         nodesConnectable={false}
       >
-        <Background color="#1e293b" gap={18} />
+        <Background color="#dbe4f0" gap={18} />
         <Controls />
       </ReactFlow>
       <p className="muted flow-legend">
