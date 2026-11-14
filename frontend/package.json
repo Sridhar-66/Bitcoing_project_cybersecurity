@@ -9,7 +9,8 @@
     "vite": "^7.1.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "@solana/web3.js": "^1.98.4"
+    "@solana/web3.js": "^1.98.4",
+    "@xyflow/react": "^12.8.6"
   },
   "devDependencies": {}
 }

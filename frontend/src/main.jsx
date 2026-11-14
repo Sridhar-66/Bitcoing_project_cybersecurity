@@ -1,10 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import BitcoinView from "./btc/BitcoinView.jsx";
 
 const API = import.meta.env.VITE_API_URL || "";
 
-function App() {
+function ChainTabs({ tab, setTab }) {
+  return (
+    <div className="chain-tabs">
+      <button className={`chain-tab ${tab === "btc" ? "active" : ""}`} onClick={() => setTab("btc")}>
+        ₿ Bitcoin Tracker
+      </button>
+      <button className={`chain-tab ${tab === "sol" ? "active" : ""}`} onClick={() => setTab("sol")}>
+        ◎ Solana Fraud Attribution
+      </button>
+    </div>
+  );
+}
+
+function Root() {
+  const [tab, setTab] = useState("btc");
+  return (
+    <div>
+      <ChainTabs tab={tab} setTab={setTab} />
+      {tab === "btc" ? <BitcoinView /> : <SolanaView />}
+    </div>
+  );
+}
+
+function SolanaView() {
   const [address, setAddress] = useState("DemoFraudWallet");
   const [depth, setDepth] = useState(3);
   const [trace, setTrace] = useState(null);
@@ -267,4 +291,4 @@ function App() {
   );
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(<Root />);
