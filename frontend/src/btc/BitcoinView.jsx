@@ -14,6 +14,17 @@ function shortAddr(a, n = 8) {
   return a.length > n * 2 ? `${a.slice(0, n)}…${a.slice(-n)}` : a;
 }
 
+const TXID_RE = /^[0-9a-f]{64}$/i;
+const BECH32_RE = /^(bc1|tb1|bcrt1)[0-9a-z]{11,71}$/i;
+const BASE58_RE = /^[13mn][a-km-zA-HJ-NP-Z1-9]{25,39}$/;
+
+function validateQuery(q) {
+  const t = q.trim();
+  if (TXID_RE.test(t)) return null;
+  if (BECH32_RE.test(t) || BASE58_RE.test(t)) return null;
+  return "Please enter a valid Bitcoin address (bc1q… on Mainnet, tb1q… on Testnet) or a 64-character transaction id (TXID).";
+}
+
 export default function BitcoinView() {
   const [network, setNetwork] = useState("testnet4");
   const [query, setQuery] = useState("");
@@ -25,6 +36,11 @@ export default function BitcoinView() {
 
   async function search() {
     if (!query.trim() || loading) return;
+    const validationError = validateQuery(query);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     setLoading(true);
     setError(null);
     setLedger(null);

@@ -27,7 +27,12 @@ async function fetchWithRetry(url, { retries = 3, baseDelayMs = 800 } = {}) {
         if (attempt < retries) { await sleep(delayMs); continue; }
         throw new Error(`Upstream rate-limited (429/503) after ${retries + 1} attempts: ${url}`);
       }
-      if (!res.ok) throw new Error(`Upstream ${res.status} for ${url}`);
+      if (!res.ok) {
+        if (res.status === 400) {
+          throw new Error("Not a valid address or transaction id for the selected network");
+        }
+        throw new Error(`Upstream ${res.status} for ${url}`);
+      }
       return await res.json();
     } catch (err) {
       lastError = err;
